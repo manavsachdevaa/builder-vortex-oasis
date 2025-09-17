@@ -31,7 +31,7 @@
     --muted: 220 14% 96%;
     --muted-foreground: 220 8% 46%;
 
-    --accent: 355 72% 67%;
+    --accent: 188 80% 42%;
     --accent-foreground: 224 71% 4%;
 
     --destructive: 0 84% 60%;
@@ -73,7 +73,7 @@
     --muted: 240 3.7% 15.9%;
     --muted-foreground: 240 5% 64.9%;
 
-    --accent: 347 77% 50%;
+    --accent: 188 80% 42%;
     --accent-foreground: 0 0% 98%;
 
     --destructive: 0 62.8% 30.6%;
@@ -101,5 +101,30 @@
 
   body {
     @apply bg-background text-foreground;
+  }
+
+  .bg-hospital {
+    background-image:
+      radial-gradient(1200px 600px at 20% -10%, hsl(var(--primary)/0.12), transparent),
+      radial-gradient(900px 600px at 85% 10%, hsl(var(--accent)/0.18), transparent);
+  }
+
+  .hospital-grid {
+    position: relative;
+  }
+  .hospital-grid::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      repeating-linear-gradient(0deg, transparent, transparent 24px, hsl(var(--border)) 25px),
+      repeating-linear-gradient(90deg, transparent, transparent 24px, hsl(var(--border)) 25px);
+    opacity: 0.35;
+    mask-image: radial-gradient(1200px 600px at 50% 0%, black, transparent 70%);
+  }
+
+  .btn-brand {
+    @apply bg-gradient-to-tr from-primary to-accent text-white shadow hover:shadow-lg transition-shadow;
   }
 }
