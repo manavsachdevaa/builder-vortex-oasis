@@ -22,7 +22,10 @@ export interface BloodRequest {
   distanceKm?: number;
 }
 
-function haversineKm(a: { lat: number; lng: number }, b: { lat: number; lng: number }) {
+function haversineKm(
+  a: { lat: number; lng: number },
+  b: { lat: number; lng: number },
+) {
   const R = 6371;
   const dLat = ((b.lat - a.lat) * Math.PI) / 180;
   const dLng = ((b.lng - a.lng) * Math.PI) / 180;
@@ -30,7 +33,8 @@ function haversineKm(a: { lat: number; lng: number }, b: { lat: number; lng: num
   const lat2 = (b.lat * Math.PI) / 180;
   const sinDLat = Math.sin(dLat / 2);
   const sinDLng = Math.sin(dLng / 2);
-  const c = sinDLat * sinDLat + Math.cos(lat1) * Math.cos(lat2) * sinDLng * sinDLng;
+  const c =
+    sinDLat * sinDLat + Math.cos(lat1) * Math.cos(lat2) * sinDLng * sinDLng;
   const d = 2 * Math.atan2(Math.sqrt(c), Math.sqrt(1 - c));
   return R * d;
 }
@@ -55,10 +59,21 @@ export function isCompatible(donor: BloodType, patient: BloodType) {
   return compat[patient].includes(donor);
 }
 
-export function matchRequestsForDonor(donor: DonorProfile, requests: BloodRequest[], maxDistanceKm = 50) {
+export function matchRequestsForDonor(
+  donor: DonorProfile,
+  requests: BloodRequest[],
+  maxDistanceKm = 50,
+) {
   return requests
-    .map((r) => ({ ...r, distanceKm: haversineKm({ lat: donor.lat, lng: donor.lng }, r) }))
-    .filter((r) => isCompatible(donor.bloodType, r.bloodType) && (r.distanceKm ?? 0) <= maxDistanceKm)
+    .map((r) => ({
+      ...r,
+      distanceKm: haversineKm({ lat: donor.lat, lng: donor.lng }, r),
+    }))
+    .filter(
+      (r) =>
+        isCompatible(donor.bloodType, r.bloodType) &&
+        (r.distanceKm ?? 0) <= maxDistanceKm,
+    )
     .sort((a, b) => {
       // Prioritize urgency and proximity
       const scoreA = a.urgency * 10 + (50 - (a.distanceKm ?? 0));
@@ -80,7 +95,12 @@ export function predictDemandZones(requests: BloodRequest[]) {
 export function mockRequestsNear(lat: number, lng: number): BloodRequest[] {
   // Deterministic pseudo-random generation based on coords
   const seed = Math.abs(Math.floor((lat * 1000 + lng * 1000) % 97));
-  const hospitals = ["CityCare Hospital", "Unity Health", "Sunrise Medical", "GreenCross Clinic"];
+  const hospitals = [
+    "CityCare Hospital",
+    "Unity Health",
+    "Sunrise Medical",
+    "GreenCross Clinic",
+  ];
   const types: BloodType[] = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
   return Array.from({ length: 8 }).map((_, i) => {
     const dx = ((seed + i * 7) % 20) / 200; // ~ up to ~5km
@@ -92,7 +112,7 @@ export function mockRequestsNear(lat: number, lng: number): BloodRequest[] {
       units: ((seed + i) % 4) + 1,
       lat: lat + dx,
       lng: lng + dy,
-      urgency: ((seed + i) % 3) + 1 as 1 | 2 | 3,
+      urgency: (((seed + i) % 3) + 1) as 1 | 2 | 3,
     };
   });
 }

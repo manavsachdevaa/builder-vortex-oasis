@@ -105,8 +105,16 @@
 
   .bg-hospital {
     background-image:
-      radial-gradient(1200px 600px at 20% -10%, hsl(var(--primary)/0.12), transparent),
-      radial-gradient(900px 600px at 85% 10%, hsl(var(--accent)/0.18), transparent);
+      radial-gradient(
+        1200px 600px at 20% -10%,
+        hsl(var(--primary) / 0.12),
+        transparent
+      ),
+      radial-gradient(
+        900px 600px at 85% 10%,
+        hsl(var(--accent) / 0.18),
+        transparent
+      );
   }
 
   .hospital-grid {
@@ -118,8 +126,18 @@
     inset: 0;
     pointer-events: none;
     background:
-      repeating-linear-gradient(0deg, transparent, transparent 24px, hsl(var(--border)) 25px),
-      repeating-linear-gradient(90deg, transparent, transparent 24px, hsl(var(--border)) 25px);
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 24px,
+        hsl(var(--border)) 25px
+      ),
+      repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 24px,
+        hsl(var(--border)) 25px
+      );
     opacity: 0.35;
     mask-image: radial-gradient(1200px 600px at 50% 0%, black, transparent 70%);
   }

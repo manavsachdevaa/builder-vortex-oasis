@@ -10,7 +10,9 @@ import type { BloodRequest, DonorProfile } from "@/lib/ai";
 import { mockRequestsNear } from "@/lib/ai";
 
 export default function Index() {
-  const [coords, setCoords] = useState<{ lat: number; lng: number } | null>(null);
+  const [coords, setCoords] = useState<{ lat: number; lng: number } | null>(
+    null,
+  );
   const [requests, setRequests] = useState<BloodRequest[]>([]);
   const [verifiedDonations, setVerifiedDonations] = useState(2);
 
@@ -46,7 +48,10 @@ export default function Index() {
 
   function enableLocation() {
     if (!navigator.geolocation) {
-      toast({ title: "Location not supported", description: "Please allow location or use a supported browser." });
+      toast({
+        title: "Location not supported",
+        description: "Please allow location or use a supported browser.",
+      });
       return;
     }
     navigator.geolocation.getCurrentPosition(
@@ -55,7 +60,7 @@ export default function Index() {
       },
       () => {
         // Fallback to a city center coordinate if denied
-        setCoords({ lat: 28.6139, lng: 77.209 });// Delhi
+        setCoords({ lat: 28.6139, lng: 77.209 }); // Delhi
       },
       { enableHighAccuracy: true, timeout: 5000 },
     );
@@ -63,7 +68,10 @@ export default function Index() {
 
   function handleRespond(req: BloodRequest) {
     setVerifiedDonations((d) => d + 1);
-    toast({ title: "Thank you!", description: `We notified ${req.hospital}. Your contribution matters.` });
+    toast({
+      title: "Thank you!",
+      description: `We notified ${req.hospital}. Your contribution matters.`,
+    });
   }
 
   return (
@@ -73,18 +81,39 @@ export default function Index() {
           <div className="grid gap-10 md:grid-cols-2 items-center">
             <div>
               <div className="inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs text-muted-foreground bg-white/60 backdrop-blur">
-                <span className="h-2 w-2 rounded-full bg-primary" /> AI-powered donor matching
+                <span className="h-2 w-2 rounded-full bg-primary" /> AI-powered
+                donor matching
               </div>
               <h1 className="mt-4 text-4xl md:text-5xl font-extrabold tracking-tight leading-tight">
-                <span className="bg-clip-text text-transparent bg-gradient-to-b from-foreground to-foreground/70">Smart blood donor matching and emergency SOS network</span>
+                <span className="bg-clip-text text-transparent bg-gradient-to-b from-foreground to-foreground/70">
+                  Smart blood donor matching and emergency SOS network
+                </span>
               </h1>
-              <p className="mt-4 text-lg text-muted-foreground max-w-prose">Lifeline AI connects donors and hospitals in real time using secure AI models for compatibility, reliability and proximity—rewarding every verified donation.</p>
+              <p className="mt-4 text-lg text-muted-foreground max-w-prose">
+                Lifeline AI connects donors and hospitals in real time using
+                secure AI models for compatibility, reliability and
+                proximity—rewarding every verified donation.
+              </p>
               <div className="mt-8 flex flex-wrap gap-3">
-                <Button asChild size="lg" className="btn-brand"><Link to="/auth">Get started</Link></Button>
-                <Button asChild variant="secondary" size="lg" className="hover:border-accent hover:text-accent"><a href="#demo">Live demo</a></Button>
+                <Button asChild size="lg" className="btn-brand">
+                  <Link to="/auth">Get started</Link>
+                </Button>
+                <Button
+                  asChild
+                  variant="secondary"
+                  size="lg"
+                  className="hover:border-accent hover:text-accent"
+                >
+                  <a href="#demo">Live demo</a>
+                </Button>
               </div>
               <div className="mt-6 flex items-center gap-3 text-sm text-muted-foreground">
-                <Badge variant="secondary" className="bg-accent/10 text-accent border-accent/30">SOS Alerts</Badge>
+                <Badge
+                  variant="secondary"
+                  className="bg-accent/10 text-accent border-accent/30"
+                >
+                  SOS Alerts
+                </Badge>
                 <Badge variant="outline">Rewards</Badge>
                 <Badge variant="outline">Secure</Badge>
               </div>
@@ -94,23 +123,41 @@ export default function Index() {
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between">
                     <div>
-                      <div className="text-sm text-muted-foreground">Current Badge</div>
-                      <div className="text-2xl font-bold">{verifiedDonations >= 5 ? "Gold" : verifiedDonations >= 3 ? "Silver" : verifiedDonations >= 1 ? "Bronze" : "New"}</div>
+                      <div className="text-sm text-muted-foreground">
+                        Current Badge
+                      </div>
+                      <div className="text-2xl font-bold">
+                        {verifiedDonations >= 5
+                          ? "Gold"
+                          : verifiedDonations >= 3
+                            ? "Silver"
+                            : verifiedDonations >= 1
+                              ? "Bronze"
+                              : "New"}
+                      </div>
                     </div>
-                    <div className="rounded-full bg-primary/10 text-primary px-3 py-1 text-sm">{verifiedDonations} verified</div>
+                    <div className="rounded-full bg-primary/10 text-primary px-3 py-1 text-sm">
+                      {verifiedDonations} verified
+                    </div>
                   </div>
                   <div className="mt-6 grid grid-cols-3 gap-3">
                     <div className="rounded-md bg-primary/10 p-4 text-center hover:bg-primary/15 transition-colors">
                       <div className="text-2xl font-bold">50%</div>
-                      <div className="text-xs text-muted-foreground">Max discount</div>
+                      <div className="text-xs text-muted-foreground">
+                        Max discount
+                      </div>
                     </div>
                     <div className="rounded-md bg-accent/10 p-4 text-center animate-pulse">
                       <div className="text-2xl font-bold text-accent">SOS</div>
-                      <div className="text-xs text-muted-foreground">Real-time alerts</div>
+                      <div className="text-xs text-muted-foreground">
+                        Real-time alerts
+                      </div>
                     </div>
                     <div className="rounded-md bg-muted p-4 text-center hover:shadow-sm">
                       <div className="text-2xl font-bold">AI</div>
-                      <div className="text-xs text-muted-foreground">Smart matching</div>
+                      <div className="text-xs text-muted-foreground">
+                        Smart matching
+                      </div>
                     </div>
                   </div>
                 </CardContent>
@@ -122,9 +169,21 @@ export default function Index() {
 
       <section className="container py-16">
         <div className="grid gap-6 md:grid-cols-3">
-          <Feature icon="🤖" title="Smart Matching" desc="Compatibility, proximity and reliability for the best match." />
-          <Feature icon="🚨" title="Emergency SOS" desc="Broadcast urgent requests instantly to nearby donors." />
-          <Feature icon="🎖️" title="Badges & Rewards" desc="Earn Bronze, Silver or Gold with treatment discounts up to 50%." />
+          <Feature
+            icon="🤖"
+            title="Smart Matching"
+            desc="Compatibility, proximity and reliability for the best match."
+          />
+          <Feature
+            icon="🚨"
+            title="Emergency SOS"
+            desc="Broadcast urgent requests instantly to nearby donors."
+          />
+          <Feature
+            icon="🎖️"
+            title="Badges & Rewards"
+            desc="Earn Bronze, Silver or Gold with treatment discounts up to 50%."
+          />
         </div>
       </section>
 
@@ -132,29 +191,47 @@ export default function Index() {
         <div className="container">
           <div className="flex items-end justify-between gap-4 flex-wrap">
             <div>
-              <h2 className="text-2xl md:text-3xl font-bold tracking-tight">Live demo</h2>
-              <p className="text-muted-foreground mt-1">Enable location to preview nearby compatible requests and SOS alerts.</p>
+              <h2 className="text-2xl md:text-3xl font-bold tracking-tight">
+                Live demo
+              </h2>
+              <p className="text-muted-foreground mt-1">
+                Enable location to preview nearby compatible requests and SOS
+                alerts.
+              </p>
             </div>
             <div className="flex items-center gap-3">
               <Button onClick={enableLocation}>Enable location</Button>
-              <Button variant="secondary" asChild><Link to="/auth">Sign in as donor</Link></Button>
+              <Button variant="secondary" asChild>
+                <Link to="/auth">Sign in as donor</Link>
+              </Button>
             </div>
           </div>
 
           <div className="mt-8 grid gap-6 md:grid-cols-5">
             <div className="md:col-span-3 space-y-6">
               {donor && (
-                <RequestList donor={donor} requests={requests} onRespond={handleRespond} />
+                <RequestList
+                  donor={donor}
+                  requests={requests}
+                  onRespond={handleRespond}
+                />
               )}
               {!donor && (
-                <Card><CardContent className="p-6 text-sm text-muted-foreground">Location is required to compute distance-based matches.</CardContent></Card>
+                <Card>
+                  <CardContent className="p-6 text-sm text-muted-foreground">
+                    Location is required to compute distance-based matches.
+                  </CardContent>
+                </Card>
               )}
             </div>
             <div className="md:col-span-2 space-y-6">
               <BadgeCard verifiedDonations={verifiedDonations} />
               <Card>
                 <CardContent className="p-6 text-sm text-muted-foreground">
-                  Smart donor matching considers blood compatibility, availability windows and donor reliability. Predictive signals estimate high-demand zones from recent requests to pre-warn nearby donors.
+                  Smart donor matching considers blood compatibility,
+                  availability windows and donor reliability. Predictive signals
+                  estimate high-demand zones from recent requests to pre-warn
+                  nearby donors.
                 </CardContent>
               </Card>
             </div>
@@ -163,7 +240,9 @@ export default function Index() {
       </section>
 
       <section className="container py-16">
-        <h2 className="text-2xl md:text-3xl font-bold tracking-tight">Rewards</h2>
+        <h2 className="text-2xl md:text-3xl font-bold tracking-tight">
+          Rewards
+        </h2>
         <div className="mt-6 grid gap-6 md:grid-cols-3">
           <Reward tier="Bronze" percent={15} desc="1 verified donation" />
           <Reward tier="Silver" percent={30} desc="3 verified donations" />
@@ -174,7 +253,15 @@ export default function Index() {
   );
 }
 
-function Feature({ icon, title, desc }: { icon: string; title: string; desc: string }) {
+function Feature({
+  icon,
+  title,
+  desc,
+}: {
+  icon: string;
+  title: string;
+  desc: string;
+}) {
   return (
     <Card className="transition-all hover:shadow-lg hover:-translate-y-0.5">
       <CardContent className="p-6">
@@ -186,15 +273,27 @@ function Feature({ icon, title, desc }: { icon: string; title: string; desc: str
   );
 }
 
-function Reward({ tier, percent, desc }: { tier: string; percent: number; desc: string }) {
+function Reward({
+  tier,
+  percent,
+  desc,
+}: {
+  tier: string;
+  percent: number;
+  desc: string;
+}) {
   return (
     <Card>
       <CardContent className="p-6">
         <div className="flex items-center justify-between">
           <div className="font-semibold text-lg">{tier}</div>
-          <div className="rounded-full bg-primary/10 px-3 py-1 text-sm text-primary">{percent}% off</div>
+          <div className="rounded-full bg-primary/10 px-3 py-1 text-sm text-primary">
+            {percent}% off
+          </div>
         </div>
-        <p className="text-sm text-muted-foreground mt-2">{desc} at partner hospitals</p>
+        <p className="text-sm text-muted-foreground mt-2">
+          {desc} at partner hospitals
+        </p>
       </CardContent>
     </Card>
   );

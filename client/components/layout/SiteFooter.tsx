@@ -4,7 +4,10 @@ export function SiteFooter() {
       <div className="container py-10 text-sm text-muted-foreground grid gap-6 md:grid-cols-3">
         <div>
           <div className="font-semibold text-foreground">Lifeline AI</div>
-          <p className="mt-2 max-w-sm">AI-powered blood donor matching and emergency SOS network with rewards for real heroes.</p>
+          <p className="mt-2 max-w-sm">
+            AI-powered blood donor matching and emergency SOS network with
+            rewards for real heroes.
+          </p>
         </div>
         <div>
           <div className="font-medium text-foreground">Badges & Rewards</div>

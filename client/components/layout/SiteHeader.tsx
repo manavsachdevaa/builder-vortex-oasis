@@ -10,8 +10,12 @@ export function SiteHeader() {
     <header className="sticky top-0 z-40 w-full border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between">
         <Link to="/" className="flex items-center gap-2">
-          <span className="inline-flex h-8 w-8 items-center justify-center rounded-md bg-primary text-primary-foreground font-bold">💓</span>
-          <span className="font-extrabold tracking-tight text-xl">Lifeline AI</span>
+          <span className="inline-flex h-8 w-8 items-center justify-center rounded-md bg-primary text-primary-foreground font-bold">
+            💓
+          </span>
+          <span className="font-extrabold tracking-tight text-xl">
+            Lifeline AI
+          </span>
         </Link>
         <nav className="hidden md:flex items-center gap-6 text-sm">
           <NavLink
