@@ -2,8 +2,15 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge as UIBadge } from "@/components/ui/badge";
 import { BADGES, currentBadge } from "@/types/badge";
 
+const colorClassMap: Record<string, { bg: string; ring: string; text: string }> = {
+  amber: { bg: "bg-amber-500/20", ring: "ring-amber-500", text: "text-amber-600" },
+  zinc: { bg: "bg-zinc-500/20", ring: "ring-zinc-500", text: "text-zinc-600" },
+  yellow: { bg: "bg-yellow-500/20", ring: "ring-yellow-500", text: "text-yellow-600" },
+};
+
 export function BadgeCard({ verifiedDonations }: { verifiedDonations: number }) {
   const badge = currentBadge(verifiedDonations);
+  const cls = colorClassMap[badge.color] ?? colorClassMap.amber;
   return (
     <Card>
       <CardHeader>
@@ -14,7 +21,7 @@ export function BadgeCard({ verifiedDonations }: { verifiedDonations: number }) 
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="flex items-center gap-4">
-          <div className={`size-14 rounded-full bg-${badge.color}-500/20 ring-2 ring-${badge.color}-500 flex items-center justify-center text-${badge.color}-600 font-bold`}>
+          <div className={`size-14 rounded-full ${cls.bg} ring-2 ${cls.ring} flex items-center justify-center ${cls.text} font-bold`}>
             {badge.level[0]}
           </div>
           <div>
