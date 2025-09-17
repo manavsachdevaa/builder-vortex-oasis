@@ -60,27 +60,35 @@ export default function Auth() {
             <TabsTrigger value="hospital">Hospital</TabsTrigger>
           </TabsList>
           <TabsContent value="donor" className="mt-6 grid gap-6 md:grid-cols-2">
-            <Card>
+            <Card id="donor-login">
               <CardHeader><CardTitle>Donor Sign In</CardTitle></CardHeader>
               <CardContent><AuthForm role="donor" mode="login" /></CardContent>
-              <CardFooter></CardFooter>
+              <CardFooter>
+                <p className="text-sm text-muted-foreground w-full text-center">Don’t have an account? <a href="#donor-signup" className="text-primary hover:underline">Sign up</a></p>
+              </CardFooter>
             </Card>
-            <Card>
+            <Card id="donor-signup">
               <CardHeader><CardTitle>Donor Sign Up</CardTitle></CardHeader>
               <CardContent><AuthForm role="donor" mode="signup" /></CardContent>
-              <CardFooter></CardFooter>
+              <CardFooter>
+                <p className="text-sm text-muted-foreground w-full text-center">Already have an account? <a href="#donor-login" className="text-primary hover:underline">Sign in</a></p>
+              </CardFooter>
             </Card>
           </TabsContent>
           <TabsContent value="hospital" className="mt-6 grid gap-6 md:grid-cols-2">
-            <Card>
+            <Card id="hospital-login">
               <CardHeader><CardTitle>Hospital Sign In</CardTitle></CardHeader>
               <CardContent><AuthForm role="hospital" mode="login" /></CardContent>
-              <CardFooter></CardFooter>
+              <CardFooter>
+                <p className="text-sm text-muted-foreground w-full text-center">Don’t have an account? <a href="#hospital-signup" className="text-primary hover:underline">Sign up</a></p>
+              </CardFooter>
             </Card>
-            <Card>
+            <Card id="hospital-signup">
               <CardHeader><CardTitle>Hospital Sign Up</CardTitle></CardHeader>
               <CardContent><AuthForm role="hospital" mode="signup" /></CardContent>
-              <CardFooter></CardFooter>
+              <CardFooter>
+                <p className="text-sm text-muted-foreground w-full text-center">Already have an account? <a href="#hospital-login" className="text-primary hover:underline">Sign in</a></p>
+              </CardFooter>
             </Card>
           </TabsContent>
         </Tabs>
