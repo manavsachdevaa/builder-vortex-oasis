@@ -68,28 +68,29 @@ export default function Index() {
 
   return (
     <>
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(1200px_600px_at_20%_-10%,hsl(var(--primary)/0.15),transparent),radial-gradient(800px_400px_at_90%_10%,hsl(var(--accent)/0.2),transparent)]" />
+      <section className="relative overflow-hidden bg-hospital hospital-grid">
         <div className="container py-16 md:py-24">
           <div className="grid gap-10 md:grid-cols-2 items-center">
             <div>
-              <div className="inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs text-muted-foreground">
+              <div className="inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs text-muted-foreground bg-white/60 backdrop-blur">
                 <span className="h-2 w-2 rounded-full bg-primary" /> AI-powered donor matching
               </div>
-              <h1 className="mt-4 text-4xl md:text-5xl font-extrabold tracking-tight leading-tight">Smart blood donor matching and emergency SOS network</h1>
+              <h1 className="mt-4 text-4xl md:text-5xl font-extrabold tracking-tight leading-tight">
+                <span className="bg-clip-text text-transparent bg-gradient-to-b from-foreground to-foreground/70">Smart blood donor matching and emergency SOS network</span>
+              </h1>
               <p className="mt-4 text-lg text-muted-foreground max-w-prose">Lifeline AI connects donors and hospitals in real time using secure AI models for compatibility, reliability and proximity—rewarding every verified donation.</p>
               <div className="mt-8 flex flex-wrap gap-3">
-                <Button asChild size="lg"><Link to="/auth">Get started</Link></Button>
-                <Button asChild variant="secondary" size="lg"><a href="#demo">Live demo</a></Button>
+                <Button asChild size="lg" className="btn-brand"><Link to="/auth">Get started</Link></Button>
+                <Button asChild variant="secondary" size="lg" className="hover:border-accent hover:text-accent"><a href="#demo">Live demo</a></Button>
               </div>
               <div className="mt-6 flex items-center gap-3 text-sm text-muted-foreground">
-                <Badge variant="secondary">SOS Alerts</Badge>
+                <Badge variant="secondary" className="bg-accent/10 text-accent border-accent/30">SOS Alerts</Badge>
                 <Badge variant="outline">Rewards</Badge>
                 <Badge variant="outline">Secure</Badge>
               </div>
             </div>
             <div className="relative">
-              <Card className="shadow-2xl border-primary/20">
+              <Card className="shadow-2xl border-primary/20 hover:shadow-primary/30 transition-shadow">
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between">
                     <div>
@@ -99,15 +100,15 @@ export default function Index() {
                     <div className="rounded-full bg-primary/10 text-primary px-3 py-1 text-sm">{verifiedDonations} verified</div>
                   </div>
                   <div className="mt-6 grid grid-cols-3 gap-3">
-                    <div className="rounded-md bg-primary/10 p-4 text-center">
+                    <div className="rounded-md bg-primary/10 p-4 text-center hover:bg-primary/15 transition-colors">
                       <div className="text-2xl font-bold">50%</div>
                       <div className="text-xs text-muted-foreground">Max discount</div>
                     </div>
-                    <div className="rounded-md bg-muted p-4 text-center">
-                      <div className="text-2xl font-bold"><span className="text-primary">SOS</span></div>
+                    <div className="rounded-md bg-accent/10 p-4 text-center animate-pulse">
+                      <div className="text-2xl font-bold text-accent">SOS</div>
                       <div className="text-xs text-muted-foreground">Real-time alerts</div>
                     </div>
-                    <div className="rounded-md bg-muted p-4 text-center">
+                    <div className="rounded-md bg-muted p-4 text-center hover:shadow-sm">
                       <div className="text-2xl font-bold">AI</div>
                       <div className="text-xs text-muted-foreground">Smart matching</div>
                     </div>
