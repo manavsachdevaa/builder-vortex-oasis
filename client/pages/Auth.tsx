@@ -1,45 +1,8 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useSearchParams, Link } from "react-router-dom";
 import { useEffect } from "react";
-import { toast } from "@/components/ui/use-toast";
-
-function AuthForm({ role, mode }: { role: "donor" | "hospital"; mode: "login" | "signup" }) {
-  const navigate = useNavigate();
-  function onSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    toast({ title: `${mode === "login" ? "Signed in" : "Account created"}`, description: `Welcome ${role}!` });
-    navigate("/");
-  }
-  return (
-    <form className="space-y-4" onSubmit={onSubmit}>
-      {mode === "signup" && (
-        <div>
-          <Label htmlFor={`${role}-name`}>Full name</Label>
-          <Input id={`${role}-name`} required placeholder="John Doe" />
-        </div>
-      )}
-      <div>
-        <Label htmlFor={`${role}-email`}>Email</Label>
-        <Input id={`${role}-email`} type="email" required placeholder="you@example.com" />
-      </div>
-      <div>
-        <Label htmlFor={`${role}-password`}>Password</Label>
-        <Input id={`${role}-password`} type="password" required />
-      </div>
-      {role === "donor" && mode === "signup" && (
-        <div>
-          <Label htmlFor="blood">Blood Type</Label>
-          <Input id="blood" placeholder="O+" required />
-        </div>
-      )}
-      <Button className="w-full" type="submit">{mode === "login" ? "Sign In" : "Create Account"}</Button>
-    </form>
-  );
-}
+import { AuthForm } from "@/components/auth/AuthForm";
 
 export default function Auth() {
   const [params, setParams] = useSearchParams();
@@ -59,35 +22,21 @@ export default function Auth() {
             <TabsTrigger value="donor">Donor</TabsTrigger>
             <TabsTrigger value="hospital">Hospital</TabsTrigger>
           </TabsList>
-          <TabsContent value="donor" className="mt-6 grid gap-6 md:grid-cols-2">
+          <TabsContent value="donor" className="mt-6">
             <Card id="donor-login">
               <CardHeader><CardTitle>Donor Sign In</CardTitle></CardHeader>
               <CardContent><AuthForm role="donor" mode="login" /></CardContent>
               <CardFooter>
-                <p className="text-sm text-muted-foreground w-full text-center">Don’t have an account? <a href="#donor-signup" className="text-primary hover:underline">Sign up</a></p>
-              </CardFooter>
-            </Card>
-            <Card id="donor-signup">
-              <CardHeader><CardTitle>Donor Sign Up</CardTitle></CardHeader>
-              <CardContent><AuthForm role="donor" mode="signup" /></CardContent>
-              <CardFooter>
-                <p className="text-sm text-muted-foreground w-full text-center">Already have an account? <a href="#donor-login" className="text-primary hover:underline">Sign in</a></p>
+                <p className="text-sm text-muted-foreground w-full text-center">Don’t have an account? <Link to="/signup?role=donor" className="text-primary hover:underline">Sign up</Link></p>
               </CardFooter>
             </Card>
           </TabsContent>
-          <TabsContent value="hospital" className="mt-6 grid gap-6 md:grid-cols-2">
+          <TabsContent value="hospital" className="mt-6">
             <Card id="hospital-login">
               <CardHeader><CardTitle>Hospital Sign In</CardTitle></CardHeader>
               <CardContent><AuthForm role="hospital" mode="login" /></CardContent>
               <CardFooter>
-                <p className="text-sm text-muted-foreground w-full text-center">Don’t have an account? <a href="#hospital-signup" className="text-primary hover:underline">Sign up</a></p>
-              </CardFooter>
-            </Card>
-            <Card id="hospital-signup">
-              <CardHeader><CardTitle>Hospital Sign Up</CardTitle></CardHeader>
-              <CardContent><AuthForm role="hospital" mode="signup" /></CardContent>
-              <CardFooter>
-                <p className="text-sm text-muted-foreground w-full text-center">Already have an account? <a href="#hospital-login" className="text-primary hover:underline">Sign in</a></p>
+                <p className="text-sm text-muted-foreground w-full text-center">Don’t have an account? <Link to="/signup?role=hospital" className="text-primary hover:underline">Sign up</Link></p>
               </CardFooter>
             </Card>
           </TabsContent>
