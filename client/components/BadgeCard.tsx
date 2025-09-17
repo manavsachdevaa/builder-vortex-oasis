@@ -21,7 +21,7 @@ export function BadgeCard({ verifiedDonations }: { verifiedDonations: number }) 
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="flex items-center gap-4">
-          <div className={`size-14 rounded-full ${cls.bg} ring-2 ${cls.ring} flex items-center justify-center ${cls.text} font-bold`}>
+          <div className={`h-14 w-14 rounded-full ${cls.bg} ring-2 ${cls.ring} flex items-center justify-center ${cls.text} font-bold`}>
             {badge.level[0]}
           </div>
           <div>
