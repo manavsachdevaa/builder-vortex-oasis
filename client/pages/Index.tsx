@@ -74,7 +74,7 @@ export default function Index() {
           <div className="grid gap-10 md:grid-cols-2 items-center">
             <div>
               <div className="inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs text-muted-foreground">
-                <span className="size-2 rounded-full bg-primary" /> AI-powered donor matching
+                <span className="h-2 w-2 rounded-full bg-primary" /> AI-powered donor matching
               </div>
               <h1 className="mt-4 text-4xl md:text-5xl font-extrabold tracking-tight leading-tight">Smart blood donor matching and emergency SOS network</h1>
               <p className="mt-4 text-lg text-muted-foreground max-w-prose">Lifeline AI connects donors and hospitals in real time using secure AI models for compatibility, reliability and proximity—rewarding every verified donation.</p>
