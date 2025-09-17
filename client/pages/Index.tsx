@@ -176,7 +176,7 @@ export default function Index() {
 
 function Feature({ icon, title, desc }: { icon: string; title: string; desc: string }) {
   return (
-    <Card>
+    <Card className="transition-all hover:shadow-lg hover:-translate-y-0.5">
       <CardContent className="p-6">
         <div className="text-2xl">{icon}</div>
         <div className="mt-3 font-semibold text-lg">{title}</div>
