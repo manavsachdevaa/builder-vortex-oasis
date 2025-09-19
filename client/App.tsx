@@ -12,6 +12,7 @@ import Auth from "./pages/Auth";
 import SignUp from "./pages/SignUp";
 import { SiteHeader } from "./components/layout/SiteHeader";
 import { SiteFooter } from "./components/layout/SiteFooter";
+import ChatWidget from "./components/chat/ChatWidget";
 
 const queryClient = new QueryClient();
 
@@ -33,6 +34,7 @@ const App = () => (
             </Routes>
           </main>
           <SiteFooter />
+          <ChatWidget />
         </div>
       </BrowserRouter>
     </TooltipProvider>
