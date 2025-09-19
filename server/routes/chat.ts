@@ -51,7 +51,10 @@ function generateReply(messages: ChatMessage[]): ChatMessage {
     );
   }
 
-  const message: ChatMessage = { role: "assistant", content: replyParts.join(" \n\n") };
+  const message: ChatMessage = {
+    role: "assistant",
+    content: replyParts.join(" \n\n"),
+  };
   return message;
 }
 

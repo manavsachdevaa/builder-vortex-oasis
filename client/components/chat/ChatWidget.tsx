@@ -2,7 +2,13 @@ import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 import type { ChatMessage, ChatResponse } from "@shared/api";
 
 function ChatBubble({ message }: { message: ChatMessage }) {
@@ -58,7 +64,10 @@ export default function ChatWidget() {
     } catch (err) {
       setMessages((m) => [
         ...m,
-        { role: "assistant", content: "Sorry, I couldn't reach the server. Please try again." },
+        {
+          role: "assistant",
+          content: "Sorry, I couldn't reach the server. Please try again.",
+        },
       ]);
     } finally {
       setLoading(false);
@@ -80,7 +89,10 @@ export default function ChatWidget() {
             Chat
           </Button>
         </SheetTrigger>
-        <SheetContent side="right" className="flex w-[min(420px,100vw)] flex-col p-0">
+        <SheetContent
+          side="right"
+          className="flex w-[min(420px,100vw)] flex-col p-0"
+        >
           <SheetHeader className="p-4 border-b">
             <SheetTitle>Lifeline Assistant</SheetTitle>
           </SheetHeader>
@@ -91,7 +103,9 @@ export default function ChatWidget() {
                   <ChatBubble key={i} message={m} />
                 ))}
                 {loading && (
-                  <div className="text-xs text-muted-foreground">Assistant is typing…</div>
+                  <div className="text-xs text-muted-foreground">
+                    Assistant is typing…
+                  </div>
                 )}
                 <div ref={bottomRef} />
               </div>
